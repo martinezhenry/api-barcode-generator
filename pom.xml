@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+
+    <groupId>com.hvscode.api</groupId>
+    <artifactId>barcode-generator</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <distributionManagement>
+        <repository>
+            <id>gh-package</id>
+            <name>Repositorio gh</name>
+            <url>${repository.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>gh-package</id>
+            <name>Repositorio gh</name>
+            <url>${repository.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>${scm.connection}</connection>
+        <url>${scm.url}</url>
+        <developerConnection>${scm.developerConnection}</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+
+    <properties>
+        <java.version>11</java.version>
+        <repository.url>https://maven.pkg.github.com/martinezhenry/api-barcode-generator</repository.url>
+        <repository.snapshot.url>https://maven.pkg.github.com/martinezhenry/api-barcode-generator</repository.snapshot.url>
+        <!-- config de scm para github donde se crearan los tags y release -->
+        <scm.connection>scm:git@github.com:martinezhenry/api-barcode-generator.git</scm.connection>
+        <scm.url>scm:git:git@github.com:martinezhenry/api-barcode-generator.git</scm.url>
+        <scm.developerConnection>scm:git:git@github.com:martinezhenry/api-barcode-generator.git</scm.developerConnection>
+        <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+        <spring-boot-version>2.4.0</spring-boot-version>
+        <app.type>api</app.type>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-version}</version>
+                <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>${spring-boot-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j -->
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+
+    </dependencies>
+
+</project>
