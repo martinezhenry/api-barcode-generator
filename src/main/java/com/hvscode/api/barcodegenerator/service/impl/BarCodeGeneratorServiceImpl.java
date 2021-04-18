@@ -113,6 +113,9 @@ public class BarCodeGeneratorServiceImpl implements BarCodeGeneratorService {
         });
 
         message.setBody(barCode);
+        message.setMessage("Success");
+        message.setResponseCode("00");
+        message.setTxId(String.valueOf(System.currentTimeMillis()));
 
         return message;
     }

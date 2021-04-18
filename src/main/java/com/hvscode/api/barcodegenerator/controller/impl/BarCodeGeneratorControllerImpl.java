@@ -7,14 +7,8 @@ import com.hvscode.api.barcodegenerator.entity.Message;
 import com.hvscode.api.barcodegenerator.service.BarCodeGeneratorService;
 import com.itextpdf.text.DocumentException;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
 @RestController
@@ -28,8 +22,9 @@ public class BarCodeGeneratorControllerImpl implements BarCodeGeneratorControlle
     }
 
     @Override
-    @GetMapping(value = "{code-type}/{sku}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Message generateBarCode(@PathVariable String codeType, @PathVariable String sku) throws FileNotFoundException, DocumentException, WriterException {
+    @PostMapping(value = "{code-type}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @CrossOrigin(origins = {"*"})
+    public Message<BarCode> generateBarCode(@PathVariable(value = "code-type") String codeType, @RequestBody String sku) throws FileNotFoundException, DocumentException, WriterException {
         return this.barCodeGeneratorService.build(codeType, sku);
     }
 
